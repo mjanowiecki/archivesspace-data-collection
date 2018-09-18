@@ -14,7 +14,7 @@ To use these ArchivesSpace scripts, you must create a secrets.py file in the sam
 
 This script pulls unpublished entities (where Publish = False) from ArchivesSpace and lists them in a CSV file.
 
-Using the argparse module, the user enters in the terminal either "people," "corporate_entites," or "families" to search for unpublished entities under those categories.The CSV also prints several properties of the unpublished agent, which can be adjusted in the script based on information needs.
+Using the argparse module, the user enters in the terminal either "people," "corporate_entities," or "families" to search for unpublished entities under those categories.The CSV also prints several properties of the unpublished agent, which can be adjusted in the script based on information needs.
 
 |uri                 |publish |name                  |create_time          |rules |created_by |
 |--------------------|--------|----------------------|---------------------|------|-----------|
