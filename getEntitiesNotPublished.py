@@ -10,22 +10,22 @@ args = parser.parse_args()
 
 if args.entity:
     type_entity = args.entity
-    print type_entity
+    print(type_entity)
 else:
-    type_entity = raw_input('Enter type of entity-- either "people", "corporate_entities", or "families": ')
+    type_entity = input('Enter type of entity-- either "people", "corporate_entities", or "families": ')
 
 baseURL = secrets.baseURL
 user = secrets.user
 password = secrets.password
-print baseURL + '/users/'+user
+print(baseURL + '/users/'+user)
 auth = requests.post(baseURL + '/users/'+user+'/login?password='+password).json()
-print auth
+print(auth)
 session = auth["session"]
 headers = {'X-ArchivesSpace-Session':session, 'Content_Type':'application/json'}
-print 'authenticated'
+print('authenticated')
 
 endpoint = '/agents/'+type_entity+'?all_ids=true'
-print endpoint
+print(endpoint)
 
 ids = requests.get(baseURL + endpoint, headers=headers).json()
 
@@ -34,13 +34,13 @@ f.writerow(['uri']+['publish']+['name']+['date']+['rules']+['creator'])
 
 total = len(ids)
 for id in ids:
-    print 'id', id, total, 'records remaining'
+    print('id', id, total, 'records remaining')
     total = total - 1
     endpoint = '/agents/'+type_entity+'/'+str(id)
     output = requests.get(baseURL + endpoint, headers=headers).json()
 
     uri = output['uri']
-    name = output['names'][0]['sort_name'].encode('utf-8').strip()
+    name = output['names'][0]['sort_name'].strip()
     create_time = output['create_time']
     try:
         created_by = output['created_by']
